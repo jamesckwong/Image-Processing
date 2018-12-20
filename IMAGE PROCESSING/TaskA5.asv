@@ -1,0 +1,56 @@
+
+[y,x] = find(orangeThumbBinary);
+Orangexmean = mean(x);
+Orangeymean = mean(y);
+
+hold on;
+plot(Orangexmean, Orangeymean, 'ro', 'MarkerSize', 30);
+
+
+[y,x] = find(greenRingBinary);
+Greenxmean = mean(x);
+Greenymean = mean(y);
+
+hold on;
+plot(Greenxmean, Greenymean, 'ro', 'MarkerSize', 30);
+
+[y,x] = find(blueMiddleBinary);
+Bluexmean = mean(x);
+Blueymean = mean(y);
+
+hold on;
+plot(Bluexmean, Blueymean, 'ro', 'MarkerSize', 30);
+
+[y,x] = find(redPinkyBinary);
+Redxmean = mean(x);
+Redymean = mean(y);
+
+hold on;
+plot(Redxmean, Redymean, 'ro', 'MarkerSize', 30);
+
+[y,x] = find(yellowIndexBinary);
+Yellowxmean = mean(x);
+Yellowymean = mean(y);
+
+hold on;
+plot(Yellowxmean, Yellowymean, 'ro', 'MarkerSize', 30);
+
+
+
+
+
+plot([Orangexmean, Yellowxmean] ,[Orangeymean ,Yellowymean], 'g')
+plot([Yellowxmean, Bluexmean], [Yellowymean, Blueymean], 'g')
+plot([Bluexmean, Greenxmean], [Blueymean, Greenymean], 'g')
+plot([Greenxmean, Redxmean], [Greenymean ,Redymean], 'g')
+
+pdist([Orangexmean, Orangeymean] , [Yellowxmean,Yellowymean], 'euclidean')
+
+pdist([Yellowxmean, Yellowymean] , [Bluexmean,Blueymean], 'euclidean')
+
+pdist([Bluexmean, Blueymean] , [Greenxmean,ymean], 'euclidean')
+
+pdist([Orangexmean, Orangeymean] , [Yellowxmean,Yellowymean], 'euclidean')
+
+
+
