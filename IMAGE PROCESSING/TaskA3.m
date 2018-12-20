@@ -15,7 +15,7 @@ orangeThumbIsolated = palmdownImageFile;
 orangeThumbIsolated(repmat(~orangeThumbBinary,[1 1 3])) = 0; 
 
 
-yellowIndexBinary = r > 174 & r < 235 & g > 142 & g < 206 & b > 33 & b < 108;
+yellowIndexBinary = r > 141 & r < 202 & g > 123 & g < 194 & b > 61 & b < 81;
 yellowIndexIsolated = palmdownImageFile;
 yellowIndexIsolated(repmat(~yellowIndexBinary,[1 1 3])) = 0;
 

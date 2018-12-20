@@ -25,30 +25,46 @@ maskedRGBImage = RGB;
 
 maskedRGBImage(repmat(~BW,[1 1 3])) = 0;
 
-
+%imshow(BW);
 maskedSkin = rgb2gray(maskedRGBImage);
-visboundaries(maskedSkin)
+
 
 edges_prewitt = edge(maskedSkin,'Prewitt');
-
 edges_roberts = edge(maskedSkin, 'Roberts');
-
 edges_sobel = edge(maskedSkin, 'Sobel');
-
 edges_canny = edge(maskedSkin, 'Canny');
 
+lineStructure = strel('line',11,90);
 
-figure;
-subplot(2,2,1);
-imshow(edges_prewitt);colormap gray;axis image;title('Prewitt'); 
-subplot(2,2,2);
-imshow(edges_roberts);colormap gray;axis image;title('Roberts'); 
+
+
+prewittContour = imdilate((reshape(uint8([255 0 0]),[1,1,3]) .* uint8(edges_prewitt)),lineStructure);
+
+robertContour = imdilate((reshape(uint8([255 0 0]),[1,1,3]) .* uint8(edges_roberts)),lineStructure);
+
+sobelContour = imdilate((reshape(uint8([255 0 0]),[1,1,3]) .* uint8(edges_sobel)),lineStructure);
+
+cannyContour = imdilate((reshape(uint8([255 0 0]),[1,1,3]) .* uint8(edges_canny)),lineStructure);
+
+
+
+subplot(2,2,1); 
+imshow(RGB + prewittContour);colormap gray;axis image;title('Prewitt');
+
+
+subplot(2,2,2); 
+imshow(RGB + robertContour);colormap gray;axis image;title('Roberts'); 
+
+
 subplot(2,2,3);
-imshow(edges_sobel);colormap gray;axis image;title('Sobel'); 
-subplot(2,2,4);
-imshow(edges_canny);colormap gray;axis image;title('Canny'); 
+imshow(RGB + sobelContour);colormap gray;axis image;title('Sobel');
 
-linkaxes; 
+
+subplot(2,2,4);
+imshow(RGB + cannyContour);colormap gray;axis image;title('Canny');
+
+
+
 
 
 
