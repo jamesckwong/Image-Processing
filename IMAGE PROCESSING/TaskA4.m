@@ -6,18 +6,19 @@ flathand = imread('palmdown.png');
 greyScaleFlatHand = rgb2gray(flathand);
 catGreyScale = cat(3, greyScaleFlatHand , greyScaleFlatHand, greyScaleFlatHand );
 
-greyWithColour = imadd(catGreyScale, orangeThumbIsolated); 
-greyWithColour = imadd(greyWithColour, redPinkyIsolated); 
-greyWithColour = imadd(greyWithColour, blueMiddleIsolated); 
-greyWithColour = imadd(greyWithColour, greenRingIsolated); 
-greyWithColour = imadd(greyWithColour, yellowIndexIsolated); 
+greyWithColour = imadd(catGreyScale, orangeIsolated); 
+greyWithColour = imadd(greyWithColour, redIsolated); 
+greyWithColour = imadd(greyWithColour, blueIsolated); 
+greyWithColour = imadd(greyWithColour, greenIsolated); 
+greyWithColour = imadd(greyWithColour, yellowIsolated); 
 imshow(greyWithColour);
 
-OrangeCardinality = sum(orangeThumbBinary(:));
-YellowCardinality = sum(yellowIndexBinary(:));
-BlueCardinality = sum(blueMiddleBinary(:));
-RedCardinality = sum(redPinkyBinary(:));
-GreenCardinality = sum(greenRingBinary(:));
+%Cardinality of each set. 
+OrangeCardinality = sum(orangeBinary(:));
+YellowCardinality = sum(yellowBinary(:));
+BlueCardinality = sum(blueBinary(:));
+RedCardinality = sum(redBinary(:));
+GreenCardinality = sum(greenBinary(:));
 
 
 

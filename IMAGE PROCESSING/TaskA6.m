@@ -1,7 +1,7 @@
 
 RGB = imread('palmdown.png');
 
-
+%Converting from rgb to hsv.
 I = rgb2hsv(RGB);
 
 
@@ -28,26 +28,27 @@ maskedRGBImage(repmat(~BW,[1 1 3])) = 0;
 %imshow(BW);
 maskedSkin = rgb2gray(maskedRGBImage);
 
-
+%Edge Detection 
 edges_prewitt = edge(maskedSkin,'Prewitt');
 edges_roberts = edge(maskedSkin, 'Roberts');
 edges_sobel = edge(maskedSkin, 'Sobel');
 edges_canny = edge(maskedSkin, 'Canny');
 
-lineStructure = strel('line',11,90);
+%Red line
+redLine = strel('line',11,90);
 
 
 
-prewittContour = imdilate((reshape(uint8([255 0 0]),[1,1,3]) .* uint8(edges_prewitt)),lineStructure);
+prewittContour = imdilate((reshape(uint8([255 0 0]),[1,1,3]) .* uint8(edges_prewitt)),redLine);
 
-robertContour = imdilate((reshape(uint8([255 0 0]),[1,1,3]) .* uint8(edges_roberts)),lineStructure);
+robertContour = imdilate((reshape(uint8([255 0 0]),[1,1,3]) .* uint8(edges_roberts)),redLine);
 
-sobelContour = imdilate((reshape(uint8([255 0 0]),[1,1,3]) .* uint8(edges_sobel)),lineStructure);
+sobelContour = imdilate((reshape(uint8([255 0 0]),[1,1,3]) .* uint8(edges_sobel)),redLine);
 
-cannyContour = imdilate((reshape(uint8([255 0 0]),[1,1,3]) .* uint8(edges_canny)),lineStructure);
+cannyContour = imdilate((reshape(uint8([255 0 0]),[1,1,3]) .* uint8(edges_canny)),redLine);
 
 
-
+%Displaying each edge detection method side by side. 
 subplot(2,2,1); 
 imshow(RGB + prewittContour);colormap gray;axis image;title('Prewitt');
 
